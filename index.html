@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordly - Single Page Dictionary Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-area">
+                <h1>Wordly<span>.</span></h1>
+                <p>Your interactive vocabulary companion</p>
+            </div>
+            <button id="themeToggleBtn" aria-label="Toggle visual theme" class="theme-btn">
+                Toggle Dark Mode
+            </button>
+        </header>
+
+        <main class="search-section">
+            <form id="dictionaryForm" class="search-form" novalidate>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="wordInput" 
+                        placeholder="Search for any word..." 
+                        autocomplete="off"
+                        aria-label="Enter a word to look up"
+                        required
+                    >
+                    <button type="submit" id="searchBtn" class="search-btn">Search</button>
+                </div>
+                <div id="inputFeedback" class="input-feedback hidden" role="alert"></div>
+            </form>
+        </main>
+
+        <section id="resultsContainer" class="results-section hidden" aria-live="polite">
+            <div class="card main-definition-card">
+                <div class="card-header">
+                    <div class="title-block">
+                        <h2 id="resultWord">Word</h2>
+                        <span id="resultPhonetic" class="phonetic">/phonetic/</span>
+                    </div>
+                    <button id="audioPlaybackBtn" class="audio-btn hidden" aria-label="Play pronunciation audio">
+                        Listen
+                    </button>
+                    <audio id="pronunciationAudio" preload="auto"></audio>
+                </div>
+
+                <div id="meaningsWrapper" class="meanings-wrapper"></div>
+
+                <div id="synonymsBox" class="synonyms-box hidden">
+                    <h3>General Synonyms</h3>
+                    <div id="synonymsList" class="synonyms-list"></div>
+                </div>
+
+                <footer class="source-footer">
+                    <span>Source details: </span>
+                    <a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">View online definition</a>
+                </footer>
+            </div>
+        </section>
+
+        <div id="loadingIndicator" class="state-container hidden" role="status">
+            <div class="spinner"></div>
+            <p>Retrieving lexical information...</p>
+        </div>
+
+        <div id="errorBanner" class="state-container error-state hidden" role="alert">
+            <div class="error-icon">⚠️</div>
+            <h3 id="errorTitle">No Definitions Found</h3>
+            <p id="errorMessage">Sorry, we couldn't locate definition summaries for that specific term.</p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
